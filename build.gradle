@@ -27,7 +27,7 @@ dependencies {
     compile 'io.vertx:vertx-web:3.3.3'
     compile group: 'io.vertx', name: 'vertx-codegen', version: vertxVersion
     compile group: 'io.vertx', name: 'vertx-auth-jdbc', version: vertxVersion
-//    compile group: 'io.vertx', name: 'vertx-auth-jwt', version: vertxVersion
+    compile group: 'io.vertx', name: 'vertx-auth-jwt', version: vertxVersion
 //    compile group: 'io.vertx', name: 'vertx-auth-oauth2', version: vertxVersion
     compile group: 'io.vertx', name: 'vertx-hazelcast', version: vertxVersion
 

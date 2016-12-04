@@ -20,7 +20,7 @@ public class UnauthorizedHandler implements Handler<RoutingContext> {
     public void handle(RoutingContext context) {
         if (context.user() == null) {
             JsonObject jsonObject = new JsonObject();
-            jsonObject.put("code", "401");
+            jsonObject.put("code", 401);
             jsonObject.put("errmsg", "Unauthorized");
             context.response().setStatusCode(401).end(jsonObject.encodePrettily());
         } else {
