@@ -35,6 +35,8 @@ import io.vertx.ext.web.handler.JWTAuthHandler;
  * @author: Zero
  */
 public class JwtVerticle extends AbstractVerticle {
+    //claims:声明
+    //realm:领域
     @Override
     public void start() throws Exception {
         Router router = Router.router(vertx);
