@@ -50,7 +50,7 @@ public class JwtVerticle extends AbstractVerticle {
                 .put("password", "secret"));
         JWTAuth authProvider = JWTAuth.create(vertx, authConfig);
 
-        //
+        //router.route("/get_token")
         router.route("/login").produces("application/json").handler(ctx -> {
             // this is an example, authentication should be done with another provider...
             if ("paulo".equals(ctx.request().getParam("username")) && "123456".equals(ctx.request().getParam("password"))) {
