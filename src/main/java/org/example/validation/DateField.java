@@ -16,10 +16,10 @@ public class DateField extends Field<Date, DateField> {
                 return this;
             }
             if (value.getTime() < min.getTime() || value.getTime() > max.getTime()) {
-                this.errmsg = MessageFormat.format("{0} must gt {1} and lt {2}", name, min, max);
+                this.errmsg = MessageFormat.format("{0} must range from {1} to {2}", name, min, max);
             }
         } catch (NumberFormatException e) {
-            this.errmsg = MessageFormat.format("{0} must gt {1} and lt {2}", name, min, max);
+            this.errmsg = MessageFormat.format("{0} must range from {1} to {2}", name, min, max);
         }
         return this;
     }

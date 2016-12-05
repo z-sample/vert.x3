@@ -14,10 +14,10 @@ public class FloatField extends Field<Float, FloatField> {
                 return this;
             }
             if (value < min || value > max) {
-                this.errmsg = MessageFormat.format("{0} must gt {1} and lt {2}", name, min, max);
+                this.errmsg = MessageFormat.format("{0} must range from {1} to {2}", name, min, max);
             }
         } catch (NumberFormatException e) {
-            this.errmsg = MessageFormat.format("{0} must gt {1} and lt {2}", name, min, max);
+            this.errmsg = MessageFormat.format("{0} must range from {1} to {2}", name, min, max);
         }
         return this;
     }
