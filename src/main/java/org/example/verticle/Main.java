@@ -20,21 +20,17 @@ public class Main {
             System.out.println("当start()调用complete()后会执行到这里");
             if (ar.succeeded()) {
                 System.out.println("deploymentID: " + ar.result());//deploymentID
-
                 //vertx.undeploy(ar.result()); //撤销部署
             }
         });
-//        vertx.deployVerticle(VerticleOne.class.getName(), options, ar -> {
-//            if (ar.succeeded()) {
-//                System.out.println(ar.result());
-//            }
-//        });
-//        vertx.deployVerticle(VerticleTwo.class.getName(), options, ar -> {
-//            if (ar.succeeded()) {
-//                System.out.println(ar.result());
-//            }
-//        });
+        vertx.deployVerticle(VerticleOne.class.getName(),options);
+        vertx.deployVerticle(VerticleTwo.class.getName(),options);
 
+
+        DeploymentOptions options2 = new DeploymentOptions();
+        options2.setWorker(true).setHa(false);
+        options2.setInstances(20);
+        vertx.deployVerticle(WorkerVerticle.class.getName(),options2);
 
     }
 
