@@ -1,8 +1,9 @@
 package org.example.verticle;
 
-import io.vertx.core.*;
-import io.vertx.core.http.HttpServerRequest;
-import io.vertx.core.http.HttpServerResponse;
+import io.vertx.core.Context;
+import io.vertx.core.Future;
+import io.vertx.core.Verticle;
+import io.vertx.core.Vertx;
 
 public class VerticleTwo implements Verticle {
     /**
@@ -41,12 +42,8 @@ public class VerticleTwo implements Verticle {
 
     @Override
     public void start(Future<Void> startFuture) throws Exception {
-        Handler<HttpServerRequest> handler = e -> {
-            HttpServerResponse response = e.response();
-            System.out.println(Thread.currentThread().getName());
-            response.putHeader("content-type", "application/json").end("Hello world2");
-        };
-        vertx.createHttpServer().requestHandler(handler).listen(8080);
+        System.out.println("VerticleTwo : "+Thread.currentThread().getName());
+
         startFuture.complete();
 //        System.out.println(Thread.currentThread().getName());
 //        System.out.println(VerticleTwo.class.getName() + " start: " + (startFuture.succeeded() ? "succeeded" : "fail"));

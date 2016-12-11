@@ -11,12 +11,7 @@ public class VerticleOne extends AbstractVerticle {
 
     @Override
     public void start() {
-        Handler<HttpServerRequest> handler = e -> {
-            HttpServerResponse response = e.response();
-            System.out.println(Thread.currentThread().getName());
-            response.putHeader("content-type", "application/json").end("Hello world");
-        };
-        vertx.createHttpServer().requestHandler(handler).listen(8080);
+        System.out.println("VerticleOne : "+Thread.currentThread().getName());
     }
 
     @Override
