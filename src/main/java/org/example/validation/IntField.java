@@ -14,9 +14,11 @@ public class IntField extends Field<Integer, IntField> {
                 return this;
             }
             if (value < min || value > max) {
+                this.error = true;
                 this.errmsg = MessageFormat.format("{0} must range from {1} to {2}", name, min, max);
             }
         } catch (NumberFormatException e) {
+            this.error = true;
             this.errmsg = MessageFormat.format("{0} must range from {1} to {2}", name, min, max);
         }
         return this;

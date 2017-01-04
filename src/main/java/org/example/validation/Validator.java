@@ -23,16 +23,7 @@ public class Validator {
         request = context.request();
     }
 
-    private void example(RoutingContext rc) {
-        Validator v = Validator.create(rc);
-        String name = v.field("name").require().in("zero", "frank").result();
-        String company = v.field("company").defValue("google").result();
-        int age = v.intField("age").require().in(18, 28, 38).result();
 
-        if (v.hasErrors()) {
-            rc.fail(400);
-        }
-    }
 
     public boolean hasErrors() {
         for (Field f : fields) {
@@ -73,7 +64,7 @@ public class Validator {
         return new StringField(name, jsonBody.getValue(name));
     }
 
-    private static Validator create(RoutingContext context) {
+    public static Validator create(RoutingContext context) {
         Validator v = new Validator(context);
         return v;
     }

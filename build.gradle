@@ -50,10 +50,11 @@ subprojects{
     }
     //设置编译参数,compileJava是一个task,设置task的参数
     compileJava {
-        options.compilerArgs << '-Xlint:unchecked'
+//        options.compilerArgs << '-Xlint:unchecked'
         options.encoding = 'UTF-8'
     }
 }
+[compileJava,compileTestJava]*.options*.encoding = 'UTF-8'
 
 task "initDir"{
     sourceSets*.java.srcDirs*.each { it.mkdirs() }
