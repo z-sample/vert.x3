@@ -35,6 +35,15 @@ import io.vertx.ext.web.handler.JWTAuthHandler;
  * @author: Zero
  */
 public class JwtVerticle extends AbstractVerticle {
+
+    //JWT 是无状态的,角色权限过期时间等都保存在token中
+
+    //web应用也可以将JWT作为token保存到cookie中
+
+    //缺点:JWT有长度限制,所以当权限很多的时候就不适合使用JWT了(比如系统之类的)
+
+    //官方例子:https://github.com/vert-x3/vertx-examples/blob/master/web-examples/src/main/java/io/vertx/example/web/authorisation/Server.java
+
     //claims:声明
     //realm:领域
     @Override
@@ -47,7 +56,7 @@ public class JwtVerticle extends AbstractVerticle {
         JsonObject authConfig = new JsonObject().put("keyStore", new JsonObject()
                 .put("type", "jceks")
                 .put("path", keyPath)
-                .put("password", "secret"));
+                .put("password", "secret"));//证书的密码
         JWTAuth authProvider = JWTAuth.create(vertx, authConfig);
 
         //router.route("/get_token")
@@ -58,6 +67,9 @@ public class JwtVerticle extends AbstractVerticle {
                 JWTOptions options = new JWTOptions();
                 //这里是生成密钥时alias的参数值,alias只能是["HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512"]之一, 请看io.vertx.ext.auth.jwt.impl.JWT源码
                 options.setAlgorithm("ES256");
+//                options.addAudience("xxx");//给用户添加权限
+//                options.setExpiresInMinutes(60L);//60分钟后过期
+//                options.setExpiresInMinutes(1L);
                 //options.setAlgorithm("SHA256withECDSA"); //错误的写法
                 ctx.response().end(authProvider.generateToken(claims, options));
             } else {
@@ -78,8 +90,10 @@ public class JwtVerticle extends AbstractVerticle {
             response.end(jsonObject.encodePrettily());
         });
 
-        router.route("/protected/somepage").handler(ctx -> {
+//      router.route("/protected/*").handler(JWTAuthHandler.create(authProvider).addAuthority("del"));
+        router.route("/protected/*").handler(ctx -> {
             // some handle code...
+            ctx.response().end("ok");
         });
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
 
