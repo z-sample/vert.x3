@@ -31,7 +31,7 @@ public class TestHttpServer extends AbstractVerticle {
         vo.setEventLoopPoolSize(16);//16
         Vertx vertx = Vertx.vertx(vo);
         DeploymentOptions options = new DeploymentOptions();
-        options.setInstances(50);//1775,720,213,168,156
+        options.setInstances(50);//30s
         //20:65M,39T
         //1:69M,22T
 
