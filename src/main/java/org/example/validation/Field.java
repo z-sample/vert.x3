@@ -19,6 +19,7 @@ class Field<T, R> {
         } else {
             error = true;
             errmsg = MessageFormat.format("{0} value is error type", name);
+//            onError(new ValidationException(MessageFormat.format("{0} value is error type", name)));
         }
     }
 
@@ -77,4 +78,11 @@ class Field<T, R> {
         return this.value == null ? this.defValue : this.value;
     }
 
+    public void onError(ValidationException e) {
+
+    }
+
+    public String getName() {
+        return name;
+    }
 }

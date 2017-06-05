@@ -25,7 +25,7 @@ public class HttpProxy extends AbstractVerticle {
             System.out.println("Proxying request: " + req.uri());
 //            req.response().end("8888");
 //            HttpClientRequest c_req = client.request(req.method(), 443, "www.marstranslation.com", req.uri(), c_res -> {
-            HttpClientRequest c_req = client.request(req.method(), 8080, "localhost", req.uri(), c_res -> {
+            HttpClientRequest c_req = client.request(req.method(), 80, "www.iteye.com", req.uri(), c_res -> {
                 System.out.println("Proxying response: " + c_res.statusCode());
                 req.response().setChunked(true);
                 req.response().setStatusCode(c_res.statusCode());
@@ -43,6 +43,6 @@ public class HttpProxy extends AbstractVerticle {
                 c_req.write(data);
             });
             req.endHandler((v) -> c_req.end());
-        }).listen(80);
+        }).listen(8080);
     }
 }

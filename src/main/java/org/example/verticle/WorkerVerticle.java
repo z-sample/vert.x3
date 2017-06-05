@@ -1,6 +1,12 @@
 package org.example.verticle;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.DeploymentOptions;
+import io.vertx.core.Vertx;
+import io.vertx.core.VertxOptions;
+import io.vertx.core.json.JsonObject;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * <pre>
@@ -25,6 +31,16 @@ public class WorkerVerticle extends AbstractVerticle {
     @Override
     public void stop() throws Exception {
         super.stop();
+    }
+
+    public static void main(String[] args) {
+        VertxOptions vo = new VertxOptions();
+        Vertx vertx = Vertx.vertx(vo);
+        DeploymentOptions options = new DeploymentOptions();
+        options.setWorker(true).setHa(false);
+        options.setInstances(20);
+        vertx.deployVerticle(WorkerVerticle.class.getName(), options);
+
     }
 
 }

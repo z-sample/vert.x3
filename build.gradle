@@ -7,7 +7,8 @@ group='vert.x3'
 version='1.0'
 
 ext{
-    vertxVersion='3.3.3'
+//    vertxVersion='3.3.3'
+    vertxVersion='3.4.1'
 }
 
 mainClassName='org.example.HelloWorldHttpServer'
@@ -23,13 +24,16 @@ repositories {
 dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'io.vertx:vertx-core:3.3.3'
-    compile 'io.vertx:vertx-web:3.3.3'
+    compile group: 'io.vertx', name: 'vertx-core', version: vertxVersion
+    compile group: 'io.vertx', name: 'vertx-web', version: vertxVersion
     compile group: 'io.vertx', name: 'vertx-codegen', version: vertxVersion
     compile group: 'io.vertx', name: 'vertx-auth-jdbc', version: vertxVersion
     compile group: 'io.vertx', name: 'vertx-auth-jwt', version: vertxVersion
-//    compile group: 'io.vertx', name: 'vertx-auth-oauth2', version: vertxVersion
+    compile group: 'io.vertx', name: 'vertx-auth-oauth2', version: vertxVersion
     compile group: 'io.vertx', name: 'vertx-hazelcast', version: vertxVersion
+
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.3.4.Final'
+    compile group: 'org.glassfish.web', name: 'javax.el', version: '2.2.4'
 
 
 

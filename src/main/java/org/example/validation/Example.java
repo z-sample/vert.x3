@@ -12,7 +12,6 @@ public class Example {
         String name = v.field("name").require().in("zero", "frank").result();
         String company = v.field("company").defValue("google").result();
         int age = v.intField("age").require().in(18, 28, 38).result();
-
         if (v.hasErrors()) {
             rc.fail(400);
         }

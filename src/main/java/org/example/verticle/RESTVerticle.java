@@ -89,6 +89,17 @@ public class RESTVerticle implements Verticle {
         //
 //        router.get("/login").handler(this::login);
 
+        //如果使用post方法访问会返回404错误,默认的Router是基于链表形式挨个匹配的,先匹配method再匹配path
+        //可以查看RouteImpl.matches()实现
+        //Spring MVC会返回405错误
+       /* {
+            "timestamp": 1491552129215,
+                "status": 405,
+                "error": "Method Not Allowed",
+                "exception": "org.springframework.web.HttpRequestMethodNotSupportedException",
+                "message": "Request method 'GET' not supported",
+                "path": "/test"
+        }*/
         router.get("/users").handler(this::userList);
         router.get("/user/:uid").handler(this::user);
         router.delete("/user/:uid").handler(this::deleteUser);
