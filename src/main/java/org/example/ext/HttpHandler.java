@@ -11,10 +11,16 @@ public interface HttpHandler extends Handler<RoutingContext> {
 
     @Override
     default void handle(RoutingContext event) {
-        if (event instanceof HttpContext) {
+        /*if (event instanceof HttpContext) {
             handle((HttpContext)event);
         } else {
             handle(new HttpContext(event));
+        }*/
+        
+        HttpContext context = event.get("$");
+        if (context == null) {
+            context = new HttpContext(event);
+            event.put("$", context);
         }
     }
 
